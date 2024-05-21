@@ -1,0 +1,58 @@
+use zenclassdbdesign;
+
+create table zoom(
+zoom_id int primary key,
+recording_link varchar(30),
+recording_password varchar(30)
+);
+
+
+create table additionalsessions(
+additional_sessions_id int primary key,
+session_date varchar(10),
+topics varchar(30)
+);
+
+create table roadmap(
+roadmap_id int primary key,
+topics varchar(30),
+activities varchar(30),
+additional_sessions_id int,
+foreign key(additional_sessions_id) references additionalsessions(additional_sessions_id)
+);
+
+create table queries(
+query_id int primary key,
+query_details varchar(30),
+assigned_to varchar(30)
+);
+
+create table mentor(
+mentor_id int primary key,
+mentor_name varchar(30),
+batch_no varchar(30)
+);
+
+create table studentinfo(
+student_id int primary key,
+student_name varchar(20),
+Batch_no int,
+class_details varchar(20),
+zoom_id int,
+roadmap_id int,
+tasks varchar(20),
+attendence int,
+query_id int,
+mentor_id int,
+foreign key(zoom_id) references zoom(zoom_id),
+foreign key(roadmap_id) references roadmap(roadmap_id),
+foreign key(query_id) references queries(query_id),
+foreign key(mentor_id) references mentor(mentor_id)
+);
+
+describe zoom;
+describe additionalsessions;
+describe roadmap;
+describe queries;
+describe mentor;
+describe studentinfo;
